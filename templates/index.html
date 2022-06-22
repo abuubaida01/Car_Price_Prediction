@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Car Price Predictor</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="">
+</head>
+
+<body style="background-color:rgb(168, 166, 166) ;">
+    <nav class="navbar" , style="background-color: #000000;">
+        <h1 class="navbar-brand; text-white">Laptop prediction</h1>
+        <ul class="nav navbar-nav">
+            <li><a href="/">home</a></li>
+        </ul>
+    </nav>
+    <!-- books container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Car Prediction</h1>
+            </div>
+            <div class="container">
+                <div class="card">
+                    <form method="post">
+                        <!-- submit button hit on action no need, cause javascript has been written-->
+                        <!-- form of selection  -->
+                        <div class="row">
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the company name</label>
+                                <select class="selectpicker form-control " name="company" id="">
+                                    {% for element in company %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the Type of Laptop</label>
+                                <select class="selectpicker form-control " name="typename" id="">
+                                    {% for element in typename %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the inches of Laptop</label>
+                                <select class="selectpicker form-control " name="inches" id="">
+                                    {% for element in inches %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the Ram</label>
+                                <select class="selectpicker form-control " name="ram" id="">
+                                    {% for element in ram %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the Operating System</label>
+                                <select class="selectpicker form-control " name="opsys" id="">
+                                    {% for element in opsys %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the Weight of laptop</label>
+                                <select class="selectpicker form-control " name="weight" id="">
+                                    {% for element in weight %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the IPS</label>
+                                <select class="selectpicker form-control " name="ips" id="">
+                                    {% for element in ips %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the Touch Screen</label>
+                                <select class="selectpicker form-control " name="touchscreen" id="">
+                                    {% for element in touchscreen %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the Resulation in PPI</label>
+                                <select class="selectpicker form-control " name="ppi" id="">
+                                    {% for element in ppi %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the Brand</label>
+                                <select class="selectpicker form-control " name="brand" id="">
+                                    {% for element in brand %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the SDD Card</label>
+                                <select class="selectpicker form-control " name="sdd" id="">
+                                    {% for element in sdd %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the HDD Card</label>
+                                <select class="selectpicker form-control " name="hdd" id="">
+                                    {% for element in hdd%}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group" , style="text-align:center;">
+                                <label for="">Select the GPU </label>
+                                <select class="selectpicker form-control " name="gpu" id="">
+                                    {% for element in gpu %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+
+
+                            <!-- FOR SENDING DATA TO APP.PY  -->
+                            <div class="col-md-12 form-group">
+                                <button class="btn btn-primary form-control" , onclick="send_data()"> predict
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+                    <!-- let's make prediction space whenever i hit button this will show here  -->
+                    <div class="col-md-12" , style="text-align:center ;">
+                        <h3><span id="prediction">
+
+                            </span></h3>
+                    </div>
+                </div>
+
+
+                <!-- <form action="/" method="post">
+                            <input type="text", name="company"><br><br>
+                            <input type="text", name="TypeName"><br><br>
+                            <input type="text", name="Inches"><br><br>
+                            <input type="text", name="Ram"><br><br>
+                            <input type="text", name="OpSys"><br><br>
+                            <input type="text", name="Weight"><br><br>
+                            <input type="text", name="IPS"><br><br>
+                            <input type="text",name="touch_screen"><br><br>
+                            <input type="text", name="PPI"><br><br>
+                            <input type="text", name="Brand"><br><br>
+                            <input type="text", name="SDD"><br><br>
+                            <input type="text", name="HDD"><br><br>
+                            <input type="text", name="GPU"><br><br> -->
+                </form>
+            </div>
+        </div>
+    </div>
+        <!-- for getting input in prediction route and showing on card -->
+        <script>
+            function form_handler(event) {
+                event.preventDefault(); // Don't submit the form
+            }
+
+            function send_data() {
+                document.querySelector('form').addEventListener("submit", form_handler)
+                var fd = new FormData(document.querySelector('form'));
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/predict', true);
+                document.getElementById("prediction").innerHTML = "Wait Dragon is working....";
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == XMLHttpRequest.DONE) {
+                        document.getElementById('prediction').innerHTML = "Prediction: Rs " + xhr.responseText;
+                    }
+                }
+                xhr.onload() = function () { };
+                xhr.send(fd);
+
+            }
+        </script>
+</body>
+
+</html>
