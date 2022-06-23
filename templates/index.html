@@ -19,6 +19,9 @@
             <li><a href="/">home</a></li>
         </ul>
     </nav>
+
+
+
     <!-- books container -->
     <div class="container">
         <div class="row">
@@ -27,127 +30,336 @@
             </div>
             <div class="container">
                 <div class="card">
-                    <form method="post">
-                        <!-- submit button hit on action no need, cause javascript has been written-->
+                    <form method="post", action="/predict">
+                    <!-- submit button hit on action no need, cause javascript has been written -->
                         <!-- form of selection  -->
-                        <div class="row">
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the company name</label>
-                                <select class="selectpicker form-control " name="company" id="">
-                                    {% for element in company %}
+                        <div class="row"> 
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the Model year</label>
+                                <select class="selectpicker form-control " name="model_year" id="">
+                                    {% for element in model_year %}
+                                        <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the mileage</label>
+                                <select class="selectpicker form-control " name="mileage" id="">
+                                    {% for element in mileage %}
+                                        <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the engine_type</label>
+                                <select class="selectpicker form-control " name="engine_type" id="">
+                                    {% for element in engine_type %}
                                     <option value="{{ element }}">{{ element }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the Type of Laptop</label>
-                                <select class="selectpicker form-control " name="typename" id="">
-                                    {% for element in typename %}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the inches of Laptop</label>
-                                <select class="selectpicker form-control " name="inches" id="">
-                                    {% for element in inches %}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the Ram</label>
-                                <select class="selectpicker form-control " name="ram" id="">
-                                    {% for element in ram %}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the Operating System</label>
-                                <select class="selectpicker form-control " name="opsys" id="">
-                                    {% for element in opsys %}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the Weight of laptop</label>
-                                <select class="selectpicker form-control " name="weight" id="">
-                                    {% for element in weight %}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the IPS</label>
-                                <select class="selectpicker form-control " name="ips" id="">
-                                    {% for element in ips %}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the Touch Screen</label>
-                                <select class="selectpicker form-control " name="touchscreen" id="">
-                                    {% for element in touchscreen %}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the Resulation in PPI</label>
-                                <select class="selectpicker form-control " name="ppi" id="">
-                                    {% for element in ppi %}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the Brand</label>
-                                <select class="selectpicker form-control " name="brand" id="">
-                                    {% for element in brand %}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the SDD Card</label>
-                                <select class="selectpicker form-control " name="sdd" id="">
-                                    {% for element in sdd %}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the HDD Card</label>
-                                <select class="selectpicker form-control " name="hdd" id="">
-                                    {% for element in hdd%}
-                                    <option value="{{ element }}">{{ element }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-12 form-group" , style="text-align:center;">
-                                <label for="">Select the GPU </label>
-                                <select class="selectpicker form-control " name="gpu" id="">
-                                    {% for element in gpu %}
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the engine_capacity</label>
+                                <select class="selectpicker form-control " name="engine_capacity" id="">
+                                    {% for element in engine_capacity %}
                                     <option value="{{ element }}">{{ element }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
 
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the transmission</label>
+                                <select class="selectpicker form-control " name="transmission" id="">
+                                    {% for element in transmission %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the color</label>
+                                <select class="selectpicker form-control " name="color" id="">
+                                    {% for element in color %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the Assembly</label>
+                                <select class="selectpicker form-control " name="Assembly" id="">
+                                    {% for element in Assembly %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the body_type</label>
+                                <select class="selectpicker form-control " name="body_type" id="">
+                                    {% for element in body_type %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the manufacturer</label>
+                                <select class="selectpicker form-control " name="manufacturer" id="">
+                                    {% for element in manufacturer %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the model</label>
+                                <select class="selectpicker form-control " name="model" id="">
+                                    {% for element in model %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the variant</label>
+                                <select class="selectpicker form-control " name="variant" id="">
+                                    {% for element in variant %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the abs</label>
+                                <select class="selectpicker form-control " name="abs" id="">
+                                    {% for element in abs%}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the fm_radio</label>
+                                <select class="selectpicker form-control " name="fm_radio" id="">
+                                    {% for element in fm_radio%}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the air_bags </label>
+                                <select class="selectpicker form-control " name="air_bags" id="">
+                                    {% for element in air_bags %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the air_cond</label>
+                                <select class="selectpicker form-control " name="air_cond" id="">
+                                    {% for element in air_cond %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the allay_rim </label>
+                                <select class="selectpicker form-control " name="allay_rim" id="">
+                                    {% for element in allay_rim %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the cd_player </label>
+                                <select class="selectpicker form-control " name="cd_player" id="">
+                                    {% for element in cd_player %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the cassette_player </label>
+                                <select class="selectpicker form-control " name="cassette_player" id="">
+                                    {% for element in cassette_player %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the climate_control </label>
+                                <select class="selectpicker form-control " name="climate_control" id="">
+                                    {% for element in climate_control %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the coolbox </label>
+                                <select class="selectpicker form-control " name="coolbox" id="">
+                                    {% for element in coolbox %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the cruise_control </label>
+                                <select class="selectpicker form-control " name="cruise_control" id="">
+                                    {% for element in cruise_control %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the dvd_player </label>
+                                <select class="selectpicker form-control " name="dvd_player" id="">
+                                    {% for element in dvd_player %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the front_camera </label>
+                                <select class="selectpicker form-control " name="front_camera" id="">
+                                    {% for element in front_camera %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the front_speakers </label>
+                                <select class="selectpicker form-control " name="front_speakers" id="">
+                                    {% for element in front_speakers %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the heated_seats </label>
+                                <select class="selectpicker form-control " name="heated_seats" id="">
+                                    {% for element in heated_seats %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the immobilizer_key </label>
+                                <select class="selectpicker form-control " name="immobilizer_key" id="">
+                                    {% for element in immobilizer_key %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the keyless_entry </label>
+                                <select class="selectpicker form-control " name="keyless_entry" id="">
+                                    {% for element in keyless_entry %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the navigation_system </label>
+                                <select class="selectpicker form-control " name="navigation_system" id="">
+                                    {% for element in navigation_system %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the power_locks </label>
+                                <select class="selectpicker form-control " name="power_locks" id="">
+                                    {% for element in power_locks %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the power_mirrors </label>
+                                <select class="selectpicker form-control " name="power_mirrors" id="">
+                                    {% for element in power_mirrors %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the power_steering </label>
+                                <select class="selectpicker form-control " name="power_steering" id="">
+                                    {% for element in power_steering %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the power_windows </label>
+                                <select class="selectpicker form-control " name="power_windows" id="">
+                                    {% for element in power_windows %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the rear_ac </label>
+                                <select class="selectpicker form-control " name="rear_ac" id="">
+                                    {% for element in rear_ac %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the rear_camera </label>
+                                <select class="selectpicker form-control " name="rear_camera" id="">
+                                    {% for element in rear_camera %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the rear_seat </label>
+                                <select class="selectpicker form-control " name="rear_seat" id="">
+                                    {% for element in rear_seat %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the rear_speakers </label>
+                                <select class="selectpicker form-control " name="rear_speakers" id="">
+                                    {% for element in rear_speakers %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the steering_switches </label>
+                                <select class="selectpicker form-control " name="steering_switches" id="">
+                                    {% for element in steering_switches %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the sun_roof </label>
+                                <select class="selectpicker form-control " name="sun_roof" id="">
+                                    {% for element in sun_roof %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group" , style="text-align:center;">
+                                <label for="">Select the usb </label>
+                                <select class="selectpicker form-control " name="usb" id="">
+                                    {% for element in usb %}
+                                    <option value="{{ element }}">{{ element }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
 
 
 
                             <!-- FOR SENDING DATA TO APP.PY  -->
                             <div class="col-md-12 form-group">
-                                <button class="btn btn-primary form-control" , onclick="send_data()"> predict
+                                <button class="btn btn-primary form-control"> predict
                                 </button>
                             </div>
 
-                        </div>
-                    </form>
+                        </div> 
+                    </form> 
                     <!-- let's make prediction space whenever i hit button this will show here  -->
                     <div class="col-md-12" , style="text-align:center ;">
                         <h3><span id="prediction">
@@ -171,32 +383,32 @@
                             <input type="text", name="SDD"><br><br>
                             <input type="text", name="HDD"><br><br>
                             <input type="text", name="GPU"><br><br> -->
-                </form>
+                <!-- </form> -->
             </div>
         </div>
     </div>
-        <!-- for getting input in prediction route and showing on card -->
-        <script>
-            function form_handler(event) {
-                event.preventDefault(); // Don't submit the form
-            }
+    <!-- for getting input in prediction route and showing on card -->
+    <!-- <script>
+        function form_handler(event) {
+            event.preventDefault(); // Don't submit the form
+        }
 
-            function send_data() {
-                document.querySelector('form').addEventListener("submit", form_handler)
-                var fd = new FormData(document.querySelector('form'));
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '/predict', true);
-                document.getElementById("prediction").innerHTML = "Wait Dragon is working....";
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == XMLHttpRequest.DONE) {
-                        document.getElementById('prediction').innerHTML = "Prediction: Rs " + xhr.responseText;
-                    }
+        function send_data() {
+            document.querySelector('form').addEventListener("submit", form_handler)
+            var fd = new FormData(document.querySelector('form'));
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/predict', true);
+            document.getElementById("prediction").innerHTML = "Wait Dragon is working....";
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    document.getElementById('prediction').innerHTML = "Prediction: Rs " + xhr.responseText;
                 }
-                xhr.onload() = function () { };
-                xhr.send(fd);
-
             }
-        </script>
+            xhr.onload() = function () { };
+            xhr.send(fd);
+
+        }
+    </script> -->
 </body>
 
 </html>
