@@ -5,39 +5,37 @@ import numpy as np
 import pandas as pd
 import pickle
 import sklearn
+import joblib
 from flask import Flask, render_template, request
-# request for getting dat from Form
 
-# df = pickle.load(open('dataframe.pkl','rb'))
-df = pd.read_csv('dataframe.csv')
-pipe = pickle.load(open('pipe.pkl', 'rb'))  # I have loaded DataFrame
+df = pd.read_csv('dataframe.csv', index_col=[0])
+# pipe = joblib.load(open('ppipe1.0.2.pkl', 'rb'))  # I have loaded DataFrame, this method was giving strange error, I tried to fixe it many time, but didn't achieve, so this is an alternative method
 
 # #___________________________ model ___________________#
-# from sklearn.preprocessing import QuantileTransformer, RobustScaler
-# from xgboost import XGBRegressor
-# from sklearn.compose import  ColumnTransformer
-# from sklearn.preprocessing import OneHotEncoder, LabelEncoder, OrdinalEncoder
-# from sklearn.pipeline import make_pipeline
-# from sklearn.model_selection import train_test_split
-# from sklearn.ensemble import RandomForestRegressor
-# X = df.copy()
-# y = pd.read_csv('label.csv')
-# # X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=42)
+from sklearn.preprocessing import QuantileTransformer, RobustScaler
+from xgboost import XGBRegressor
+from sklearn.compose import  ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder,  OrdinalEncoder
+from sklearn.pipeline import make_pipeline
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+X = df.copy()
+y = pd.read_csv('label.csv')
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=42)
 
 
 
-# transformer = ColumnTransformer(transformers=[
-#     ('scaler1',QuantileTransformer(),['Mileage', 'Engine Capacity', 'Model Year']),
-#     ('Ordinal1', OrdinalEncoder(categories=[['Hatchback','Sedan','Suv','Mini Van','Crossover','Van']]),['Body Type']),
-#     ('Ordinal2', OrdinalEncoder(categories=[['Petrol','Diesel','Hybrid']]), ['Engine Type']),
-#     ('Ordinal3', OrdinalEncoder(categories=[['Automatic', 'Manual']]), ['Transmission']),
-#     ('ohe1', (OneHotEncoder(drop='first', sparse=False)),['Model','variant','Color','Manufacturer', 'Assembly'])   
-# ], remainder='passthrough')
+transformer = ColumnTransformer(transformers=[
+    ('scaler1',QuantileTransformer(),['Mileage', 'Engine Capacity', 'Model Year']),
+    ('Ordinal1', OrdinalEncoder(categories=[['Hatchback','Sedan','Suv','Mini Van','Crossover','Van']]),['Body Type']),
+    ('Ordinal2', OrdinalEncoder(categories=[['Petrol','Diesel','Hybrid']]), ['Engine Type']),
+    ('Ordinal3', OrdinalEncoder(categories=[['Automatic', 'Manual']]), ['Transmission']),
+    ('ohe1', (OneHotEncoder(drop='first', sparse=False)),['Model','variant','Color','Manufacturer', 'Assembly'])   
+], remainder='passthrough')
 
-# pipe_r = make_pipeline(transformer, RandomForestRegressor())
-# pipe_r.fit(X_train,y_train)
+pipe_xg = make_pipeline(transformer, XGBRegressor())
+pipe_xg.fit(X_train,y_train)
 
-# pipe_r.predict(X_test)
 
 
 
@@ -131,12 +129,14 @@ def predict():
     sun_roof = request.form.get('sun_roof')
     usb = request.form.get('usb')
 
-    input = pd.DataFrame([[model_year, mileage, engine_type, engine_capacity, transmission, color, Assembly, body_type, manufacturer, model, variant, abs, fm_radio, air_bags, air_cond, allay_rim, cd_player, cassette_player, climate_control, coolbox, cruise_control,dvd_player, front_camera, front_speakers, heated_seats, immobilizer_key, keyless_entry, navigation_system, power_locks, power_mirrors, power_steering, power_windows, rear_ac, rear_camera, rear_seat, rear_speakers, steering_switches, sun_roof, usb]])
+    input = pd.DataFrame([[model_year, mileage, engine_type, engine_capacity, transmission, color, Assembly, body_type, manufacturer, model, variant, abs, fm_radio, air_bags, air_cond, allay_rim, cd_player, cassette_player, climate_control, coolbox, cruise_control,dvd_player, front_camera, front_speakers, heated_seats, immobilizer_key, keyless_entry, navigation_system, power_locks, power_mirrors, power_steering, power_windows, rear_ac, rear_camera, rear_seat, rear_speakers, steering_switches, sun_roof, usb]],columns=['Model Year', 'Mileage', 'Engine Type', 'Engine Capacity','Transmission', 'Color', 'Assembly', 'Body Type', 'Manufacturer','Model', 'variant', 'ABS', 'AM/FM Radio', 'Air Bags','Air Conditioning', 'Alloy Rims', 'CD Player', 'Cassette Player','Climate Control', 'CoolBox', 'Cruise Control', 'DVD Player','Front Camera', 'Front Speakers', 'Heated Seats', 'Immobilizer Key','Keyless Entry', 'Navigation System', 'Power Locks', 'Power Mirrors','Power Steering', 'Power Windows', 'Rear AC Vents', 'Rear Camera',
+    'Rear Seat Entertainment', 'Rear speakers', 'Steering Switches','Sun Roof', 'USB and Auxillary Cable'])
 
-    prediction = pipe.predict(input.to_xarray())
-    return str(prediction)
-    # return str(prediction)/
-    # return render_template('index.html', prediction_text=f'Predicted Price is {prediction}')
+    pred_in_log= pipe_xg.predict(input)[0][1]
+    prediction = np.round(np.exp(pred_in_log))
+    pred = f"{prediction:,}"
+
+    return render_template('prediction.html', prediction=pred)
 
 if __name__ == "__main__":
     app.run(debug=True)
