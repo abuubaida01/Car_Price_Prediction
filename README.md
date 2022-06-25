@@ -1,7 +1,7 @@
 # **CARWAR.COM**
 
 ## Introduction.
-- This Project is base on PAKWHEELS.COM dataset, which I have downloaded from Kaggel.
+- This Project is based on PAKWHEELS.COM dataset, which I have downloaded from Kaggel.
 
 ## Model.
 - I made a Notebook with these steps:
