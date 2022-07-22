@@ -1,9 +1,13 @@
 # **CARWAR.COM**
+---
 
-## Introduction.
+## Summary
+---
 - This Project is based on PAKWHEELS.COM dataset, which I have downloaded from Kaggel.
+- Here all you need to do is just fill this form, and you will be shown the best prediction of car price.
 
 ## Model.
+---
 - I made a Notebook with these steps:
 1. EDA 
 2. Feature Engineering 
@@ -13,7 +17,6 @@
   * Scaling 
   * Column Transformation 
   * Picking most accurate algorithm
-5. At last I tried my level best to deploy it on Heroku but didn't succeed 
 
 
 
