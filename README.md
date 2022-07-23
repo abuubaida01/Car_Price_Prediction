@@ -4,7 +4,7 @@
 ## Summary
 ---
 - This Project is based on PAKWHEELS.COM dataset, which I have downloaded from Kaggel.
-- Here all you need to do is just fill this form, and you will be shown the best prediction of car price.
+- Here all you need to do is just fill a form, and then you will be shown the best estimation of car price with 96% accuracy.
 
 ## Model.
 ---
